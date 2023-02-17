@@ -7,8 +7,11 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'mustafa2005'
 
-    @app.route("/")
-    def home():
-        return "<h1>123</h1>"
+    from .views import views
+    from .auth import auth
 
-    return app
+    app.register_blueprint(views, url_prefix="/")
+    app.register_blueprint(auth, url_prefix="/")
+    
+
+    return app 
